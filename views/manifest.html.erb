@@ -1,0 +1,20 @@
+<div>
+  <a href="/" class="btn btn-link">Back</a>
+</div>
+
+<h2><%= @manifest.json.dig('label', 'en', 0) %></h2>
+
+<div class="d-flex mb-3">
+  <img class="img-thumbnail" src="<%= @manifest.canvases.first&.dig('items', 0, 'items', 0, 'body', 'id') %>" width="200" />
+
+  <div class="ms-3">
+    <dl>
+      <dt>URL:</dt>
+      <dd class="metadata-value"><a href="<%= @manifest.url %>"><%= @manifest.url %></a></dd>
+    </dl>
+
+    <a href="https://embed.stanford.edu/iiif?url=<%= CGI.escape(@manifest.url) %>" target="_blank" class="btn btn-primary">Open in viewer</a>
+  </div>
+</div>
+
+<pre class="card p-3 bg-light json"><%= @manifest.body %></pre>

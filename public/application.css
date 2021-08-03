@@ -1,0 +1,10 @@
+.metadata-value {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 64ch;
+}
+
+.json {
+  max-height: 24rem;
+}
