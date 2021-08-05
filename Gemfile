@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'cocina-models'
-gem 'http'
 gem 'puma'
 gem 'rake'
 gem 'sinatra'

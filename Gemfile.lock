@@ -28,8 +28,6 @@ GEM
     commonmarker (0.22.0)
     concurrent-ruby (1.1.9)
     diff-lcs (1.4.4)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5.0)
@@ -52,24 +50,9 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    ffi (1.15.3)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
-    http (5.0.1)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.2)
-      llhttp-ffi (~> 0.3.0)
-    http-cookie (1.0.4)
-      domain_name (~> 0.5)
-    http-form_data (2.3.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    llhttp-ffi (0.3.1)
-      ffi-compiler (~> 1.0)
-      rake (~> 13.0)
     mini_mime (1.1.0)
     minitest (5.14.4)
     multi_json (1.15.0)
@@ -125,9 +108,6 @@ GEM
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
@@ -139,7 +119,6 @@ PLATFORMS
 DEPENDENCIES
   capybara (>= 3.26)
   cocina-models
-  http
   puma
   rack-test
   rake
