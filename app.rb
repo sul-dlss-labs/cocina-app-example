@@ -1,34 +1,45 @@
+require 'cocina/models'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
-require 'http'
+set :root, File.dirname(__FILE__)
 
-set :public_folder, 'public'
+# Utility for parsing and working with a Cocina model
+class CocinaObject
+  attr_reader :path
 
-# Utility for parsing and working with a IIIF manifest
-class IiifManifest
-  attr_reader :url
-
-  def initialize(url)
-    @url = url
+  def initialize(path)
+    @path = path
   end
 
   def body
-    response.body.to_s
+    JSON.pretty_generate(cocina)
   end
 
-  def json
-    @json ||= JSON.parse(body)
+  def cocina
+    @cocina ||= JSON.parse(File.read(path))
   end
 
-  def canvases
-    json.fetch('items', [])
+  def file_urls
+    file_sets.map do |file_set|
+      Array(file_set.dig('structural', 'contains')).filter_map do |file|
+        stacks_url(file['filename']) if file['hasMimeType'] == 'image/jpeg'
+      end
+    end.flatten.compact
   end
 
   private
 
-  def response
-    @response ||= HTTP.get(@url)
+  def identifier
+    @identifier ||= File.basename(path, '.json')
+  end
+
+  def file_sets
+    Array(cocina.dig('structural', 'contains'))
+  end
+
+  def stacks_url(filename)
+    "https://stacks.stanford.edu/image/iiif/#{identifier}%2F#{File.basename(filename, '.jpg')}/full/full/0/default.jpg"
   end
 end
 
@@ -36,8 +47,8 @@ get '/' do
   erb :'app.html'
 end
 
-get '/manifest' do
-  @manifest = IiifManifest.new(params[:url])
+get '/object' do
+  @object = CocinaObject.new(params[:path])
 
-  erb :'manifest.html'
+  erb :'object.html'
 end

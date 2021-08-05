@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
+gem 'cocina-models'
+gem 'http'
 gem 'puma'
 gem 'rake'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
-gem 'http'
-
 group :test do
+  gem 'capybara', '>= 3.26'
   gem 'rack-test'
   gem 'rspec'
-  gem 'capybara', '>= 3.26'
 end

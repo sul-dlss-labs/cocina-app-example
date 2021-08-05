@@ -1,0 +1,18 @@
+<div>
+  <a href="/" class="btn btn-link">Back</a>
+</div>
+
+<h2><%= @object.cocina['label'] %></h2>
+
+<div class="d-flex mb-3">
+  <img class="img-thumbnail" src="<%= @object.file_urls.first %>" width="200" />
+
+  <div class="ms-3">
+    <dl>
+      <dt>Path:</dt>
+      <dd class="metadata-value"><%= @object.path %></dd>
+    </dl>
+  </div>
+</div>
+
+<pre class="card p-3 bg-light json"><%= @object.body %></pre>
